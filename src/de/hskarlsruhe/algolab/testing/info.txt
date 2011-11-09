@@ -1,0 +1,17 @@
+UnitTest Options:
+
+assertTrue(boolean)
+assertEquals(foo, bar)
+assertNotNull(Object)
+assertNull(Object)
+assertSame(Object, Object)
+fail()
+
+
+
+		// alternative implementation of KMP find
+		/*
+		 * int j = 0; for (int i = 0; i < N; i++) { if (t.charAt(i) ==
+		 * p.charAt(j)) j++; // match else j = next[j]; // mismatch if (j == M)
+		 * return i - M + 1; // found } return -1; // not found
+		 */
