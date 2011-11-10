@@ -5,18 +5,19 @@ import de.hskarlsruhe.algolab.interfaces.ISearchAlgorithm;
 
 /**
  * 
- * This class implements the Knuth Morris Pratt Pattern Matching Algorithm.
+ * This class implements the Knuth-Morris-Pratt Pattern Matching Algorithm.
  * 
- * @author T60
+ * @author Mario Kaufmann
  * 
  */
 public class KnuthMorrisPratt implements ISearchAlgorithm {
 
 	/**
-	 * This method takes a search pattern and creates a Prefix Table out of it,
+	 * This method takes a search pattern and creates a Prefix Table,
 	 * which can be used for the Knuth-Morris-Pratt Algorithm.
 	 * 
-	 * @param pattern The search pattern.
+	 * @param pattern
+	 *            The search pattern.
 	 * @return The prefix list.
 	 */
 	private int[] getPrefixList(IDataProvider pattern) {
@@ -29,19 +30,15 @@ public class KnuthMorrisPratt implements ISearchAlgorithm {
 
 		// iterate over the entire pattern
 		while (patternPosition < pattern.length()) {
-			
-			// ?
+
 			while (prefixLength >= 0
 					&& pattern.charAt(prefixLength) != pattern
 							.charAt(patternPosition)) {
 				prefixLength = prefixList[prefixLength];
 			}
 
-			// an dieser Stelle ist prefix_len=-1 oder
-			// oder pattern[prefix_len] == pattern[i]
-
-			// unter dem n�chsten Zeichen im Muster den gefundenen Wert
-			// (mindestens 0) in die Pr�fix-Tabelle eintragen
+			// at this point the prefix_len=-1 or
+			// pattern[prefix_len] == pattern[i]
 			patternPosition++;
 			prefixLength++;
 			prefixList[patternPosition] = prefixLength;
@@ -49,23 +46,25 @@ public class KnuthMorrisPratt implements ISearchAlgorithm {
 		return prefixList;
 	}
 
+	
 	@Override
 	public int find(IDataProvider text, IDataProvider pattern) {
-
+		
 		// abort if text or pattern is empty
 		if (pattern.length() == 0 || text.length() == 0) {
 			return -1;
 		}
 
-		int textPosition = 0; // pos im Text
-		int patternPosition = 0; // pos im pattern
+		int textPosition = 0; // position in Text
+		int patternPosition = 0; // position in pattern
 
 		// create the prefix table
 		int[] prefixes = getPrefixList(pattern);
 
 		// iterate over the text
 		while (textPosition < text.length()) {
-			// muster verschieben, bis Text mit Muster übereinstimmt
+			
+			// slide pattern until pattern and text match
 			while (patternPosition >= 0
 					&& text.charAt(textPosition) != pattern
 							.charAt(patternPosition)) {
@@ -79,11 +78,11 @@ public class KnuthMorrisPratt implements ISearchAlgorithm {
 			if (patternPosition == pattern.length()) {
 				patternPosition = prefixes[patternPosition];
 
-				return (textPosition - pattern.length()); // anfangsposition!
+				return (textPosition - pattern.length());
 			}
 		}
+		// pattern has not been found
 		return -1;
-
 	}
 
 }

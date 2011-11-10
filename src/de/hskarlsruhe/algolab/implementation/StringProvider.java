@@ -20,9 +20,4 @@ public class StringProvider implements IDataProvider{
 		return this.text.length();
 	}
 
-	@Override
-	public void append(String character) {
-		text.concat(character);
-	}
-
 }
