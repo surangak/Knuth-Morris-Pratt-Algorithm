@@ -68,7 +68,7 @@ public class AdvancedFileProvider implements IDataProvider {
 	public char charAt(int newPosition) {
 
 		// catch OutOfBounds errors early
-		if (newPosition < 0 || newPosition > Integer.MAX_VALUE) {
+		if (newPosition < 0) {
 			throw new IndexOutOfBoundsException();
 		}
 
