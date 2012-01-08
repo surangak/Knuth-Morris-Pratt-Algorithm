@@ -14,6 +14,7 @@ import de.hskarlsruhe.algolab.implementation.AdvancedFileProvider;
  */
 public class AdvancedFileProviderTest extends TestCase {
 
+	String fileName = "suchtext.txt";
 	AdvancedFileProvider fileProvider;
 	
 	public AdvancedFileProviderTest(String name) {
@@ -22,7 +23,7 @@ public class AdvancedFileProviderTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		fileProvider = new AdvancedFileProvider("C:\\users\\t60\\desktop\\suchtext.txt");
+		fileProvider = new AdvancedFileProvider(fileName);
 	}
 
 	protected void tearDown() throws Exception {

@@ -20,6 +20,8 @@ import junit.framework.TestCase;
  */
 public class KnuthMorrisPrattTest extends TestCase {
 
+	String fileName = "suchtext.txt";
+
 	ISearchAlgorithm searchAlgorithm = null;
 
 	public KnuthMorrisPrattTest(String name) {
@@ -88,7 +90,7 @@ public class KnuthMorrisPrattTest extends TestCase {
 	@Test
 	public void testFindingInFileNoMatch() throws IOException {
 		int result = searchAlgorithm.find(new SimpleFileProvider(
-				"C:\\users\\t60\\desktop\\suchtext.txt"), new StringProvider(
+				fileName), new StringProvider(
 				"hallodiesisteintesd"));
 		assertEquals(result, -1);
 	}
@@ -96,7 +98,7 @@ public class KnuthMorrisPrattTest extends TestCase {
 	@Test
 	public void testFindingInFileMath() throws IOException {
 		int result = searchAlgorithm.find(new SimpleFileProvider(
-				"C:\\users\\t60\\desktop\\suchtext.txt"), new StringProvider(
+				fileName), new StringProvider(
 				"das"));
 		assertEquals(result, 6);
 	}
@@ -104,7 +106,7 @@ public class KnuthMorrisPrattTest extends TestCase {
 	@Test
 	public void testFindingInFileEmptyPattern() throws IOException {
 		int result = searchAlgorithm.find(new SimpleFileProvider(
-				"C:\\users\\t60\\desktop\\suchtext.txt"),
+				fileName),
 				new StringProvider(""));
 		assertEquals(result, -1);
 	}
@@ -113,7 +115,7 @@ public class KnuthMorrisPrattTest extends TestCase {
 	@Test
 	public void test1() throws IOException {
 		int result = searchAlgorithm.find(new AdvancedFileProvider(
-				"C:\\users\\t60\\desktop\\suchtext.txt"), new StringProvider(
+				fileName), new StringProvider(
 				"h"));
 		assertEquals(0, result);
 	}
@@ -121,7 +123,7 @@ public class KnuthMorrisPrattTest extends TestCase {
 	@Test
 	public void test2() throws IOException {
 		int result = searchAlgorithm.find(new AdvancedFileProvider(
-				"C:\\users\\t60\\desktop\\suchtext.txt"), new StringProvider(
+				fileName), new StringProvider(
 				"a"));
 		assertEquals(1, result);
 	}
@@ -129,7 +131,7 @@ public class KnuthMorrisPrattTest extends TestCase {
 	@Test
 	public void testFindingInFileNoMatchAdvanced() throws IOException {
 		int result = searchAlgorithm.find(new AdvancedFileProvider(
-				"C:\\users\\t60\\desktop\\suchtext.txt"), new StringProvider(
+				fileName), new StringProvider(
 				"hallodiesisteintesd"));
 		assertEquals(-1, result);
 	}
@@ -137,7 +139,7 @@ public class KnuthMorrisPrattTest extends TestCase {
 	@Test
 	public void testFindingInFileMatchAdvanced() throws IOException {
 		int result = searchAlgorithm.find(new AdvancedFileProvider(
-				"C:\\users\\t60\\desktop\\suchtext.txt"), new StringProvider(
+				fileName), new StringProvider(
 				"das"));
 		assertEquals(6, result);
 	}
@@ -145,7 +147,7 @@ public class KnuthMorrisPrattTest extends TestCase {
 	@Test
 	public void testFindingInFileEmptyPatternAdvanced() throws IOException {
 		int result = searchAlgorithm.find(new AdvancedFileProvider(
-				"C:\\users\\t60\\desktop\\suchtext.txt"),
+				fileName),
 				new StringProvider(""));
 		assertEquals(-1, result);
 	}
